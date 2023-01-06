@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Custom Music Player</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+
+        <style>
+            #canvas            
+            {
+                display: block;
+                image-rendering: pixelated;
+                text-rendering: optimizeSpeed;
+                shape-rendering: crispEdges;
+            }
+        </style>
+    </head>
+    <body>
+        <audio id="audio" src="track.mp3" controls></audio>
+        <canvas width="500" height="150" id="canvas"></canvas>
+    </body>
+</html>
