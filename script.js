@@ -2,6 +2,7 @@ const canvas = document.getElementById("canvas");
 const canvasCtx = canvas.getContext('2d');
 
 const audio = document.getElementById("audio");
+audio.volume = 0.5  
 
 let audioCtx;
 let track;
@@ -40,7 +41,7 @@ function updateFreuqency()
         const progress = (audio.currentTime / audio.duration);
         const bari = x / canvas.width;
 
-        canvasCtx.fillStyle = `rgba(255, 255, 255, ${progress > bari ? 1 : 0.5} )`;
+        canvasCtx.fillStyle = `rgba(255, 255, 255, ${progress > bari ? 1 : 0.66} )`;
         canvasCtx.fillRect(x, canvas.height - height, width, height);
     }
 
