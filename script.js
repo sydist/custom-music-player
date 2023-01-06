@@ -37,7 +37,10 @@ function updateFreuqency()
         const height = perc * canvas.height;
         x += width + gap;
 
-        canvasCtx.fillStyle = `rgba(255, 255, 255, 1)`;
+        const progress = (audio.currentTime / audio.duration);
+        const bari = x / canvas.width;
+
+        canvasCtx.fillStyle = `rgba(255, 255, 255, ${progress > bari ? 1 : 0.5} )`;
         canvasCtx.fillRect(x, canvas.height - height, width, height);
     }
 
