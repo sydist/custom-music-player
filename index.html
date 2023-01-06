@@ -9,9 +9,25 @@
         <script src="script.js" defer></script>
 
         <style>
+            body
+            {
+                margin: 0;
+                display: grid;
+                min-height: 100vh;
+                place-content: center;
+                place-items: center;
+            }
+            :root
+            {
+                color-scheme: dark;
+
+            }
+
+
             #canvas            
             {
                 display: block;
+                max-width: 100%;
                 image-rendering: pixelated;
                 text-rendering: optimizeSpeed;
                 shape-rendering: crispEdges;
@@ -20,6 +36,6 @@
     </head>
     <body>
         <audio id="audio" src="track.mp3" controls></audio>
-        <canvas width="500" height="150" id="canvas"></canvas>
+        <canvas width="1024" height="200" id="canvas"></canvas>
     </body>
 </html>

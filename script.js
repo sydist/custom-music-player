@@ -19,9 +19,12 @@ audio.addEventListener("play", () =>
 
 function updateFreuqency()
 {
-    analyzer.getByteFrequencyData(dataArray);
-
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    if (audio.paused)
+        return;
+        
+    analyzer.getByteFrequencyData(dataArray);
 
     const width = 2;
     const gap = width;
@@ -30,11 +33,11 @@ function updateFreuqency()
     let x = 0;
     for (let i = 0; i < bars; i++)
     {
-        const perc = (dataArray[i] * 100) / 255
-        const height = (perc * canvas.height) / 100;
+        const perc = dataArray[i] / 255
+        const height = perc * canvas.height;
         x += width + gap;
 
-        canvasCtx.fillStyle = "rgba(0, 0, 0, 1)";
+        canvasCtx.fillStyle = `rgba(255, 255, 255, 1)`;
         canvasCtx.fillRect(x, canvas.height - height, width, height);
     }
 
@@ -52,7 +55,7 @@ function initalizeAudioContext()
     track = audioCtx.createMediaElementSource(audio);
     gain = audioCtx.createGain();
     analyzer = audioCtx.createAnalyser();
-    analyzer.fftSize = 4096
+    analyzer.fftSize = 16384
     
     bufferLength = analyzer.frequencyBinCount;
     dataArray = new Uint8Array(bufferLength);
