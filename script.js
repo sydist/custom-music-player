@@ -19,10 +19,10 @@ audio.addEventListener("play", () =>
 
 function updateFreuqency()
 {
-    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
     
     if (audio.paused)
         return;
+    canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
         
     analyzer.getByteFrequencyData(dataArray);
 
