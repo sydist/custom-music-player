@@ -5,14 +5,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
 
-        <link rel="stylesheet" href="style.css">
-        <script src="script.js" defer></script>
 
         <style>
             body
             {
                 margin: 0;
                 display: grid;
+                grid-auto-flow: column;
                 min-height: 100vh;
                 place-content: center;
                 place-items: center;
@@ -34,9 +33,11 @@
                 shape-rendering: crispEdges;
             }
         </style>
+
+        <script src="script.js" defer></script>
     </head>
     <body>
         <audio id="audio" src="track.mp3" controls></audio>
-        <canvas width="1280" height="384" id="canvas"></canvas>
+        <canvas width="320" height="90" id="canvas"></canvas>
     </body>
 </html>

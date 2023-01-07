@@ -2,8 +2,11 @@ const canvas = document.getElementById("canvas");
 const canvasCtx = canvas.getContext('2d');
 
 const audio = document.getElementById("audio");
-audio.volume = 0.5  
+audio.volume = 0.5;
 
+/**
+ * @type AudioContext
+ */
 let audioCtx;
 let track;
 let gain;
@@ -20,9 +23,8 @@ audio.addEventListener("play", () =>
 
 function updateFreuqency()
 {
-    
-    if (audio.paused)
-        return;
+    // if (audio.paused)
+    //     return;
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
         
     analyzer.getByteFrequencyData(dataArray);
@@ -37,12 +39,17 @@ function updateFreuqency()
         const perc = dataArray[i] / 255
         const height = perc * canvas.height;
         x += width + gap;
+        // x-= gap;
 
         const progress = (audio.currentTime / audio.duration);
         const bari = x / canvas.width;
 
-        canvasCtx.fillStyle = `rgba(255, 255, 255, ${progress > bari ? 1 : 0.66} )`;
-        canvasCtx.fillRect(x, canvas.height - height, width, height);
+        canvasCtx.fillStyle = `rgba(255, 255, 255, ${progress > bari ? 1 : 0.25} )`;
+        
+        
+        canvasCtx.fillRect(x, (canvas.height / 2) - (height / 2), width, height);
+        // canvasCtx.fillRect(x, canvas.height - height, width, height);
+        // canvasCtx.fillRect(x, canvas.height - height, width, width*4);
     }
 
     requestAnimationFrame(updateFreuqency);
@@ -59,7 +66,7 @@ function initalizeAudioContext()
     track = audioCtx.createMediaElementSource(audio);
     gain = audioCtx.createGain();
     analyzer = audioCtx.createAnalyser();
-    analyzer.fftSize = 16384
+    analyzer.fftSize = 1024*4
     
     bufferLength = analyzer.frequencyBinCount;
     dataArray = new Uint8Array(bufferLength);
